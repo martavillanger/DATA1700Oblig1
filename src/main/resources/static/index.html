@@ -15,10 +15,12 @@
         <option>Emperor's new groove</option>
         <option>Hot Fuzz</option>
     </select>
+    <span style="color: red" id="filmError"></span>
 </p>
 <p>
     <label for="amount">Number of tickets</label>
-    <input type="text" id="amount" name="input" size="2" required>
+    <input type="text" id="amount" size="2" required>
+    <span style="color: red" id="amountError"></span>
 </p>
 <table>
     <tr>
@@ -27,6 +29,7 @@
         </td>
         <td>
             <input type="text" id="fname" required>
+            <span style="color: red" id="fNameError"></span>
         </td>
     </tr>
     <tr>
@@ -35,6 +38,7 @@
         </td>
         <td>
             <input type="text" id="lname" required>
+            <span style="color: red" id="lNameError"></span>
         </td>
     </tr>
     <tr>
@@ -43,6 +47,7 @@
         </td>
         <td>
             <input type="text" id="phone" required>
+            <span style="color: red" id="phoneError"></span>
         </td>
     </tr>
     <tr>
@@ -51,6 +56,7 @@
         </td>
         <td>
             <input type="email" id="email" required>
+            <span style="color: red" id="emailError"></span>
         </td>
     </tr>
 </table>
