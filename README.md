@@ -10,8 +10,8 @@ The javascript file contains the following:
 An empty array tickets.
 A function called buyTicket that reads all user inputs into local variables.
 There is a function to validate each input and display a red error message on the page next to each field.
-As it stands, there is only shown an error message for one field at a time descending from the top. 
-I was unable to display all applicable error messages at one time and will need to look into that further. 
+In order to display all applicable error messages at the same time it was necessary to have a local variable
+that checks each function.
 When all input fields are correctly submitted they are added as elements into an object ticketOrder.
 The object is then appended to the array of tickets and displayed under the "ticketArray" area on the page.
 To format the display of all purchased tickets there is a function createTable that takes the whole array

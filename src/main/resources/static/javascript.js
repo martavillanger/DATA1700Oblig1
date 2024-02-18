@@ -102,7 +102,26 @@ function validEmail(){
     return valid;
 }
 function validInputs(){
-    return validFilm() && validAmount() && validFirstName() && validLastName() && validPhone() && validEmail();
+    let validateInputs = true;
+    if(!validFilm()){
+        validateInputs = false;
+    }
+    if(!validAmount()){
+        validateInputs = false;
+    }
+    if(!validFirstName()){
+        validateInputs = false;
+    }
+    if(!validLastName()){
+        validateInputs = false;
+    }
+    if(!validPhone()){
+        validateInputs = false;
+    }
+    if(!validEmail()){
+        validateInputs = false;
+    }
+    return validateInputs;
 }
 function resetInputs(){
     document.getElementById("film").value="Choose film here";
