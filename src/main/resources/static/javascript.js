@@ -9,25 +9,50 @@ function buyTicket(){
     let innLName = document.getElementById("lname").value;
     let innPhone = document.getElementById("phone").value;
     let innEmail = document.getElementById("email").value;
-    let ticketOrder = {innFilm, innAmount, innFName, innLName, innPhone, innEmail}
+    const ticketOrder = {innFilm, innAmount, innFName, innLName, innPhone, innEmail}
     tickets.push(ticketOrder)
-    document.getElementById("ticketArray").replaceChildren(createTable(tickets));
+    createTable(tickets);
+   // document.getElementById("ticketArray").replaceChildren(createTable(tickets));
     resetInputs();
+
+    $.post("/save", ticketOrder, function () {
+        getAll();
+    });
+
 }
+
+function getAll(){
+    $.get("/getAll", function (tickets) {
+        createTable(tickets);
+    });
+}
+
 function createTable(tickets){
-    const table = document.createElement("table");
-    for (let i = 0; i < tickets.length; i++){
-        let ticket = tickets[i];
-        const row = table.insertRow();
-        for (let key in ticket){
-            const cell = row.insertCell();
-            cell.appendChild(document.createTextNode(ticket[key]));
-        }
+    let ut = "<table class='table'><tr><th>Film</th><th>No tickets</th><th>First name</th><th>Last name</th><th>Phone no.</th><th>Email</th></tr>";
+    for (let ticket of tickets){
+        ut += "<tr><td>" + ticket.innFilm + "</td><td>" + ticket.innAmount + "</td><td>" + ticket.innFName + "</td><td>" + ticket.innLName + "</td><td>" + ticket.innPhone + "</td><td>" + ticket.innEmail + "</td><td>";
     }
-    return table;
+    ut += "</table>";
+    $("#ticketArray").html(ut);
 }
+
+
+//function createTable(tickets){
+  //  const table = document.createElement("table");
+    //for (let i = 0; i < tickets.length; i++){
+      //  let ticket = tickets[i];
+        //const row = table.insertRow();
+        //for (let key in ticket){
+          //  const cell = row.insertCell();
+            //cell.appendChild(document.createTextNode(ticket[key]));
+       // }
+    //}
+    //return table;
+//}
 function emptyArray(){
-    tickets = [];
+    $.get("/deleteAll", function(){
+        getAll();
+    })
     document.getElementById("ticketArray").innerHTML="";
 }
 function validFilm(){
