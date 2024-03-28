@@ -13,16 +13,22 @@ public class TicketController {
 
     @PostMapping("/save")
     public void save(Ticket ticket){
+        System.out.println("Save");
+        System.out.println(ticket);
         ticketRegistry.add(ticket);
     }
 
     @GetMapping("/getAll")
     public List<Ticket> getAll() {
+        System.out.println("Get");
+        System.out.println(ticketRegistry);
         return ticketRegistry;
     }
 
     @GetMapping("/deleteAll")
     public void deleteAll(){
+        System.out.println("Delete");
+        System.out.println(ticketRegistry);
         ticketRegistry.clear();
     }
 }

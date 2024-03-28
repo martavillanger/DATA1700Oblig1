@@ -36,4 +36,9 @@ public class Ticket {
 
     public String getEmail() {return innEmail;}
     public void setEmail(String innEmail){this.innEmail = innEmail;}
+
+    @Override
+    public String toString() {
+        return innFilm + ", " + innAmount + ", " + innFName + ", " +innLName + ", " +innPhone + ", " +innEmail;
+    }
 }
