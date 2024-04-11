@@ -1,23 +1,37 @@
-let tickets = [];
 function buyTicket(){
     if (!validInputs()){
         return;
     }
-    let innFilm = document.getElementById("film").value;
-    let innAmount = document.getElementById("amount").value;
-    let innFName = document.getElementById("fname").value;
-    let innLName = document.getElementById("lname").value;
-    let innPhone = document.getElementById("phone").value;
-    let innEmail = document.getElementById("email").value;
-    const ticketOrder = {innFilm, innAmount, innFName, innLName, innPhone, innEmail}
-    tickets.push(ticketOrder)
-    createTable(tickets);
-   // document.getElementById("ticketArray").replaceChildren(createTable(tickets));
-    resetInputs();
+    //Spesifiserer json-"form" for det som sendes til server
+    const ticketOrder = {
+        innFilm: $("#film").val(),
+        innAmount: $("#amount").val(),
+        innFName: $("#fname").val(),
+        innLName: $("#lname").val(),
+        innPhone: $("#phone").val(),
+        innEmail: $("#email").val()
+    }
+    /*$.post({}
+        "/save", JSON.stringify(ticketOrder)
+    )
+        .done(function (){
+            getAll()
+        })
+*/
 
-    $.post("/save", ticketOrder, function () {
+    $.ajax({
+        type: 'POST',
+        url: '/save',
+        contentType: 'application/json',
+        data: JSON.stringify(ticketOrder)
+    });
+
+    //const jsonObject = JSON.stringify(ticketOrder);
+/*    $.post("/save", ticketOrder, function () {
         getAll();
     });
+  */
+    resetInputs();
 
 }
 
@@ -28,32 +42,17 @@ function getAll(){
 }
 
 function createTable(tickets){
-    let ut = "<table class='table'><tr><th>Film</th><th>No tickets</th><th>First name</th><th>Last name</th><th>Phone no.</th><th>Email</th></tr>";
-    for (let ticket of tickets){
-        ut += "<tr><td>" + ticket.innFilm + "</td><td>" + ticket.innAmount + "</td><td>" + ticket.innFName + "</td><td>" + ticket.innLName + "</td><td>" + ticket.innPhone + "</td><td>" + ticket.innEmail + "</td><td>";
+    let ut = "<table class='table'><tr><th>Film</th><th>Tickets</th><th>First name</th><th>Last name</th><th>Phone no.</th><th>Email</th></tr>";
+    for (let i in tickets){
+        ut += "<tr><td>" + tickets[i].innFilm + "</td><td>" + tickets[i].innAmount + "</td><td>" + tickets[i].innFName + "</td><td>" + tickets[i].innLName + "</td><td>" + tickets[i].innPhone + "</td><td>" + tickets[i].innEmail + "</td><td>";
     }
     ut += "</table>";
     $("#ticketArray").html(ut);
 }
-
-
-//function createTable(tickets){
-  //  const table = document.createElement("table");
-    //for (let i = 0; i < tickets.length; i++){
-      //  let ticket = tickets[i];
-        //const row = table.insertRow();
-        //for (let key in ticket){
-          //  const cell = row.insertCell();
-            //cell.appendChild(document.createTextNode(ticket[key]));
-       // }
-    //}
-    //return table;
-//}
 function emptyArray(){
     $.get("/deleteAll", function(){
         getAll();
     })
-    document.getElementById("ticketArray").innerHTML="";
 }
 function validFilm(){
     const innFilm = document.getElementById("film").value;
