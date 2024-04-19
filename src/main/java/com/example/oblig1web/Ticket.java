@@ -19,23 +19,23 @@ public class Ticket {
 
     public Ticket(){}
 
-    public String getFilm() {return innFilm;}
-    public void setFilm(String innFilm){this.innFilm = innFilm;}
+    public String getinnFilm() {return innFilm;}
+    public void setinnFilm(String innFilm){this.innFilm = innFilm;}
 
-    public int getAmount() {return innAmount;}
-    public void setAmount(int innAmount){this.innAmount = innAmount;}
+    public int getinnAmount() {return innAmount;}
+    public void setinnAmount(int innAmount){this.innAmount = innAmount;}
 
-    public String getFName() {return innFName;}
-    public void setFName(String innFName){this.innFName = innFName;}
+    public String getinnFName() {return innFName;}
+    public void setinnFName(String innFName){this.innFName = innFName;}
 
-    public String getLName() {return innLName;}
-    public void setLName(String innFName){this.innLName = innLName;}
+    public String getinnLName() {return innLName;}
+    public void setinnLName(String innLName){this.innLName = innLName;}
 
-    public int getPhone() {return innPhone;}
-    public void setPhone(int innPhone){this.innPhone = innPhone;}
+    public int getinnPhone() {return innPhone;}
+    public void setinnPhone(int innPhone){this.innPhone = innPhone;}
 
-    public String getEmail() {return innEmail;}
-    public void setEmail(String innEmail){this.innEmail = innEmail;}
+    public String getinnEmail() {return innEmail;}
+    public void setinnEmail(String innEmail){this.innEmail = innEmail;}
 
     @Override
     public String toString() {

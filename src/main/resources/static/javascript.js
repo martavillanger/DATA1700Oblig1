@@ -11,26 +11,17 @@ function buyTicket(){
         innPhone: $("#phone").val(),
         innEmail: $("#email").val()
     }
-    /*$.post({}
-        "/save", JSON.stringify(ticketOrder)
-    )
-        .done(function (){
-            getAll()
-        })
-*/
 
     $.ajax({
         type: 'POST',
         url: '/save',
         contentType: 'application/json',
         data: JSON.stringify(ticketOrder)
-    });
+    })
+        .done(function (){
+            getAll()
+        });
 
-    //const jsonObject = JSON.stringify(ticketOrder);
-/*    $.post("/save", ticketOrder, function () {
-        getAll();
-    });
-  */
     resetInputs();
 
 }
